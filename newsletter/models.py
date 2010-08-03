@@ -281,14 +281,14 @@ class Subscription(models.Model):
     def subscribe_activate_url(self):
         return ('newsletter_update_activate', (),
                 {'newsletter_slug': self.newsletter.slug,
-                 'email': self.email,
+                 'subscription_id': self.id,
                  'action' : 'subscribe',
                  'activation_code' : self.activation_code})
     @permalink
     def unsubscribe_activate_url(self):
         return ('newsletter_update_activate', (),
                 {'newsletter_slug': self.newsletter.slug,
-                 'email': self.email,
+                 'subscription_id': self.id,
                  'action' : 'unsubscribe',
                  'activation_code' : self.activation_code})
     
@@ -296,7 +296,7 @@ class Subscription(models.Model):
     def update_activate_url(self):
         return ('newsletter_update_activate', (),
                 {'newsletter_slug': self.newsletter.slug,
-                 'email': self.email,
+                 'subscription_id': self.id,
                  'action' : 'update',
                  'activation_code' : self.activation_code})
 

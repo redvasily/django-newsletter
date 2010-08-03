@@ -187,12 +187,12 @@ def update_request(request, newsletter_slug):
     return render_to_response("newsletter/subscription_update.html", env, context_instance=RequestContext(request))
 
 
-def update_subscription(request, newsletter_slug, email, action, activation_code=None):
+def update_subscription(request, newsletter_slug, subscription_id, action, activation_code=None):
     if not action in ['subscribe', 'update', 'unsubscribe']:
         raise Http404
     
     my_newsletter = get_object_or_404(Newsletter.on_site, slug=newsletter_slug)
-    my_subscription = get_object_or_404(Subscription, newsletter=my_newsletter, email_field__exact=email)
+    my_subscription = get_object_or_404(Subscription, id=subscription_id)
     
     if activation_code:
         my_initial = {'user_activation_code' : activation_code}
