@@ -261,6 +261,7 @@ class Subscription(models.Model):
         (subject_template, text_template, html_template) = EmailTemplate.get_templates(action, self.newsletter)
 
         c = Context({'subscription' : self, 
+                     'newsletter': self.newsletter,
                      'site' : Site.objects.get_current(),
                      'date' : self.subscribe_date })
         
